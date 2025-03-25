@@ -1,34 +1,51 @@
-﻿namespace ProjetoDiamante
+﻿using System;
+
+namespace ProjetoDiamante
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("informe um número ímpar para verificar o desenho do diamante ");
-
+            Console.WriteLine("Informe um número ímpar para verificar o desenho do diamante:");
 
             while (true)
             {
-                int TamanhoDiamante = Convert.ToInt32(Console.ReadLine());
+                int tamanhoDiamante;
 
-
-                if (TamanhoDiamante % 2 == 0)
+                if (!int.TryParse(Console.ReadLine(), out tamanhoDiamante))
                 {
-                    Console.WriteLine("Número inválido, digite um numero ímpar ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Entrada inválida. Digite um número inteiro.");
+                    Console.ResetColor();
                     continue;
                 }
 
-                for (int i=1; i<= TamanhoDiamante; i++)
+                if (tamanhoDiamante % 2 == 0)
                 {
-                    string DesenhoDiamante = new string('x', i);
-                    Console.WriteLine(DesenhoDiamante);
+                    Console.WriteLine("Número inválido, digite um número ímpar.");
+                    continue;
                 }
+
+                int meio = tamanhoDiamante / 2;
+
                 
+                for (int i = 0; i <= meio; i++)
+                {
+                    int espacos = meio - i;
+                    int quantidadeDeX = 2 * i + 1;
+                    Console.WriteLine(new string(' ', espacos) + new string('x', quantidadeDeX));
+                }
+
+      
+                for (int i = meio - 1; i >= 0; i--)
+                {
+                    int espacos = meio - i;
+                    int quantidadeDex = 2 * i + 1;
+                    Console.WriteLine(new string(' ', espacos) + new string('x', quantidadeDex));
+                }
 
                 Console.ReadLine();
             }
-
-
         }
     }
 }
