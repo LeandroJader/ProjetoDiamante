@@ -58,7 +58,7 @@
         }
     public static bool Continuar()
     {
-       
+        Console.WriteLine();
         Console.WriteLine("você deseja continuar ? S/N");
        string  continuar = Console.ReadLine().ToUpper();
 
